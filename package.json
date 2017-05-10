@@ -1,0 +1,26 @@
+{
+  "name": "monitor-saude",
+  "version": "1.0.0",
+  "description": "app para monitorar a ingestão de calorias do usuário com backbone.js e webpack",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alinealvesvianna/monitor-saude.git"
+  },
+  "keywords": [
+    "monitor",
+    "saude"
+  ],
+  "author": "Aline Vianna",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alinealvesvianna/monitor-saude/issues"
+  },
+  "homepage": "https://github.com/alinealvesvianna/monitor-saude#readme",
+  "devDependencies": {
+    "webpack": "^2.5.1"
+  }
+}
