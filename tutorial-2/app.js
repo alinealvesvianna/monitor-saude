@@ -1,5 +1,11 @@
 (function($) {
 
+
+  Backbone.sync = function(method, model, sucess, error) {
+    sucess();
+  }
+
+
   var Item = Backbone.Model.extend({
     defaults: {
       part1: 'hello',
@@ -12,14 +18,40 @@
   });
 
 
-  var ItemView =  Backbone.View.extend({
+  var ItemView = Backbone.View.extend({
     tagName: 'li',
-    initialize: function(){
-      _.bindAll(this, 'render');
+
+    events: {
+      'click span.swap': 'swap',
+      'click span.delete': 'remove'
     },
-    render: function(){
-      $(this.el).html('<span>'+this.model.get('part1') + ' ' + this.model.get('part2')+'</span>');
-      return this;
+
+    initialize: function() {
+      _.bindAll(this, 'render', 'unrender', 'swap', 'remove');
+
+      this.model.bind('change', this.render);
+      this.model.bind('remove', this.unrender);
+    },
+
+    render: function() {
+      $(this.el).html('<span style="color:black;">' + this.model.get('part1') + ' ' + this.model.get('part2') + '</span> &nbsp; &nbsp; <span class="swap" style="font-family:sans-serif; color:blue; cursor:pointer;">[swap]</span> <span class="delete" style="cursor:pointer; color:red; font-family:sans-serif;">[delete]</span>');
+      return this; // for chainable calls, like .render().el
+    },
+
+    unrender: function() {
+      $(this.el).remove();
+    },
+
+    swap: function() {
+      var swapped = {
+        part1: this.model.get('part2'),
+        part2: this.model.get('part1')
+      };
+      this.model.set(swapped);
+    },
+
+    remove: function() {
+      this.model.destroy();
     }
   });
 
@@ -60,15 +92,15 @@
       // $(this.el).append("<li>hello world" + this.counter + "</li>")
     },
 
-    appendItem: function(item){
+    appendItem: function(item) {
       var itemView = new ItemView({
         model: item
       });
 
       $('ul', this.el).append(itemView.render().el);
-    },
+    }
 
-  })
+  });
 
   var listView = new ListView();
 })(jQuery);
