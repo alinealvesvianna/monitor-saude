@@ -9,7 +9,7 @@ app.AppView = Backbone.View.extend({
     'keypress #new-todo': 'createOnEnter',
     'click #clear-completed': 'clearCompleted',
     'click #toggle-all': 'toggleAllComplete'
-  }
+  },
 
   initialize: function() {
     this.allCheckbox = this.$('#toggle-all')[0];
@@ -20,6 +20,7 @@ app.AppView = Backbone.View.extend({
     this.listenTo(app.Todos, 'add', this.addOne);
     this.listenTo(app.Todos, 'reset', this.addAll);
 
+    // New
     this.listenTo(app.Todos, 'change:completed', this.filterOne);
     this.listenTo(app.Todos, 'filter', this.filterAll);
     this.listenTo(app.Todos, 'all', this.render);
@@ -42,7 +43,7 @@ app.AppView = Backbone.View.extend({
 
       this.$('#filter li a')
         .removeClass('selected')
-        .filter('[href = "#/' + (app.TodoFilter || '') + '""]')
+        .filter('[href="#/' + (app.TodoFilter || '') + '"]')
         .addClass('selected');
     } else {
       this.$main.hide();
@@ -53,6 +54,7 @@ app.AppView = Backbone.View.extend({
 
   addOne: function(todo) {
     var view = new app.TodoView({
+      //referenciado no todos.js
       model: todo
     });
     $('#todo-list').append(view.render().el);
@@ -63,8 +65,8 @@ app.AppView = Backbone.View.extend({
     app.Todos.each(this.addOne, this);
   },
 
-  filterOne: function() {
-    app.Todos.each(this.filterOne, this);
+  filterOne : function (todo) {
+    todo.trigger('visible');
   },
 
   filterAll: function() {
@@ -90,7 +92,7 @@ app.AppView = Backbone.View.extend({
   clearCompleted: function() {
     _.invoke(app.Todos.completed(), 'destroy');
     return false;
-  }
+  },
 
   toggleAllComplete: function() {
     var completed = this.allCheckbox.checked;

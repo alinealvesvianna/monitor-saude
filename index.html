@@ -29,12 +29,13 @@
 
   <script type="text/template" id="item-template">
     <div class="view">
-      <input type="checkbox" class="toggle" <%= completed ? 'checked': '' %>>
+      <input class="toggle" type="checkbox" <%= completed ? 'checked' : '' %>>
       <label><%= title %></label>
       <button class="destroy"></button>
     </div>
-    <input value="<%= title %>" class="edit">
+    <input class="edit" value="<%= title %>">
   </script>
+
   <script type="text/template" id="stats-template">
     <span id="todo-count">
       <strong><%= remaining %></strong>
@@ -48,13 +49,13 @@
     </ul>
     <% if (completed) { %>
       <button id="clear-completed">Clear completed (<%= completed %>)</button>
-    <% } %>
+      <% } %>
   </script>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="http://underscorejs.org/underscore-min.js"></script>
-  <script src="http://backbonejs.org/backbone-min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone-localstorage.js/1.1.16/backbone.localStorage-min.js"></script>
+  <script src="js/lib/jquery-3.2.1.min.js"></script>
+  <script src="js/lib/underscore-min.js"></script>
+  <script src="js/lib/backbone-min.js"></script>
+  <script src="js/lib/backbone.localStorage.min.js"></script>
   <script src="js/models/todo.js"></script>
   <script src="js/collections/todos.js"></script>
   <script src="js/views/todos.js"></script>
