@@ -1,5 +1,7 @@
 var app = app || {};
 
+//essa views renderiza a parte principal do aplicativo
+//manipulando dados da collection
 app.AppView = Backbone.View.extend({
   el: '#todoapp',
 
@@ -54,7 +56,9 @@ app.AppView = Backbone.View.extend({
 
   addOne: function(todo) {
     var view = new app.TodoView({
-      //referenciado no todos.js
+      //instância a view do todo, e passa
+      //um model com dados para preencher os
+      //elementos html
       model: todo
     });
     $('#todo-list').append(view.render().el);
