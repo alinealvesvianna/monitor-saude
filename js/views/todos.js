@@ -2,13 +2,13 @@ var app = app || {};
 
 //Essa view renderiza uma parte do aplicativo
 //que seria a tarefa. Ela usa os dados do Model
-//ao ser instânciada 
+//ao ser instânciada
 app.TodoView = Backbone.View.extend({
   tagName: 'li',
 
   template: _.template($('#item-template').html()),
 
-  events:
+  events: {
     'click .toggle': 'toggleCompleted',
     'dblclick label': 'edit',
     'click .destroy': 'clear',
@@ -32,11 +32,11 @@ app.TodoView = Backbone.View.extend({
     return this;
   },
 
-  toggleVisible: function(){
+  toggleVisible: function() {
     this.$el.toggleClass('hidden', this.isHidden());
   },
 
-  isHidden: function(){
+  isHidden: function() {
     var isCompleted = this.model.get('completed');
     return (
       (!isCompleted && app.TodoFilter === 'completed') ||
@@ -44,9 +44,8 @@ app.TodoView = Backbone.View.extend({
     );
   },
 
-  togglecompleted: function(){
-    this.$el.addClass('editing');
-    this.$input.focus();
+  togglecompleted: function() {
+    this.model.toggle();
   },
 
   edit: function() {
@@ -61,6 +60,8 @@ app.TodoView = Backbone.View.extend({
       this.model.save({
         title: value
       });
+    } else {
+      this.clear();
     }
 
     this.$el.removeClass('editing');
@@ -72,7 +73,7 @@ app.TodoView = Backbone.View.extend({
     }
   },
 
-  clear: function(){
+  clear: function() {
     this.model.destroy();
   }
 
