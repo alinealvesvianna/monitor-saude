@@ -5,11 +5,42 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>Ingestão de calorias</title>
 </head>
 
 <body>
-  <script src="dist/bundle.js"></script>
+
+
+
+
+<!-- firebase -->
+<script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBkDjvyTFKhkWyuDD9jx0kSW6UaQ1FBBzw",
+    authDomain: "monitor-saude.firebaseapp.com",
+    databaseURL: "https://monitor-saude.firebaseio.com",
+    projectId: "monitor-saude",
+    storageBucket: "monitor-saude.appspot.com",
+    messagingSenderId: "105819415236"
+  };
+  firebase.initializeApp(config);
+</script>
+
+ <!-- livrarias -->
+  <script src="js/lib/jquery-3.2.1.min.js"></script>
+  <script src="js/lib/underscore-min.js"></script>
+  <script src="js/lib/backbone-min.js"></script>
+  <script src="js/lib/backbone.localStorage.min.js"></script>
+
+  <script src="js/models/userLogin.js"></script>
+  <!-- collection -->
+  <script src="js/views/login.js"></script>
+  <script src="js/views/registerUser.js"></script>
+  <script src="js/routers/router.js"></script>
+  <script src="js/appSettings.js"></script>
+
 </body>
 
 </html>
